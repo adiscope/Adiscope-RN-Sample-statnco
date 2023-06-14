@@ -36,7 +36,7 @@
   buildscript {
       ext {
           buildToolsVersion = "29.0.2"
-          minSdkVersion = **21 // 16 → 21 수정 (multidex 적용)**
+          minSdkVersion = 21 // 16 → 21 수정 (multidex 적용)
           compileSdkVersion = 29
           targetSdkVersion = 29
       }
@@ -51,9 +51,9 @@
 
   allprojects {
       repositories {
-  				...
-          **maven { url 'https://repository.adiscope.com/repository/adiscope/' } // 추가
-  				...**
+  		  ...
+          maven { url 'https://repository.adiscope.com/repository/adiscope/' } // 추가
+  		  ...
       }
   }
   ```
@@ -69,11 +69,11 @@
 
           // 애디스콥 측에 media_id 와 media_secret, sub_domain 문의!
 
-          **manifestPlaceholders = [
+          manifestPlaceholders = [
                   adiscope_media_id: "AOS media id, TNK로부터 전달 받은 값",
                   adiscope_media_secret: "TNK로부터 전달 받은 값",
                   adiscope_sub_domain: "TNK로부터 전달 받은 값"
-          ] // 추가**
+          ] // 추가
       }
       ...
   }
@@ -81,25 +81,25 @@
   dependencies {
   		...
   //		implementation "com.facebook.react:react-native:+"
-  		**implementation "com.facebook.react:react-native:0.63.4!!"** // react-native 버전 적용
+  	implementation "com.facebook.react:react-native:0.63.4!!" // react-native 버전 적용
 
       // aos adiscope 3.0.0 libraries
-      **implementation 'com.nps.adiscope:adiscopeCore:3.0.0.0'**
-      **implementation 'com.nps.adiscope:adiscopeAndroid:1.1.8'**
-      **implementation 'com.nps.adiscope:adapter.admob:20.6.0.4'** // admob (use play-services-ads:20.6.0 dependency)
-      **implementation 'com.nps.adiscope:adapter.chartboost:8.4.2.2'**
-      **implementation 'com.nps.adiscope:adapter.ironsource:7.2.1.3'**
-      **implementation 'com.nps.adiscope:adapter.unityads:4.2.1.1'**
-      **implementation 'com.nps.adiscope:adapter.max:11.9.0.0'**
-      **implementation 'com.applovin:applovin-sdk:11.9.0'** // applovin 앱러빈은 직접 참조 해야함
-      **implementation 'com.nps.adiscope:adapter.applovin:11.9.0.0'**
-      **implementation 'com.nps.adiscope:adapter.fan:6.13.7.0'**
-      **implementation 'com.nps.adiscope:adapter.inmobi:10.1.3.4.0'**
-      **implementation 'com.nps.adiscope:adapter.mobvista:16.4.31.0'** // mobvista (use androidx)
-      **implementation 'com.nps.adiscope:adapter.pangle:5.1.0.8.0'**
-      **implementation 'com.nps.adiscope:adapter.smaato:22.1.0.0'**
-      **implementation 'com.nps.adiscope:adapter.tapjoy:12.11.1.2'**
-      **implementation 'com.nps.adiscope:adapter.vungle:6.12.1.1'** // vungle (use androidx)
+      implementation 'com.nps.adiscope:adiscopeCore:3.0.0.0'
+      implementation 'com.nps.adiscope:adiscopeAndroid:1.1.8'
+      implementation 'com.nps.adiscope:adapter.admob:20.6.0.4' // admob (use play-services-ads:20.6.0 dependency)
+      implementation 'com.nps.adiscope:adapter.chartboost:8.4.2.2'
+      implementation 'com.nps.adiscope:adapter.ironsource:7.2.1.3'
+      implementation 'com.nps.adiscope:adapter.unityads:4.2.1.1'
+      implementation 'com.nps.adiscope:adapter.max:11.9.0.0'
+      implementation 'com.applovin:applovin-sdk:11.9.0' // applovin 앱러빈은 직접 참조 해야함
+      implementation 'com.nps.adiscope:adapter.applovin:11.9.0.0'
+      implementation 'com.nps.adiscope:adapter.fan:6.13.7.0'
+      implementation 'com.nps.adiscope:adapter.inmobi:10.1.3.4.0'
+      implementation 'com.nps.adiscope:adapter.mobvista:16.4.31.0' // mobvista (use androidx)
+      implementation 'com.nps.adiscope:adapter.pangle:5.1.0.8.0'
+      implementation 'com.nps.adiscope:adapter.smaato:22.1.0.0'
+      implementation 'com.nps.adiscope:adapter.tapjoy:12.11.1.2'
+      implementation 'com.nps.adiscope:adapter.vungle:6.12.1.1' // vungle (use androidx)
   }
   ```
 
@@ -109,7 +109,7 @@
   <application ...>
   		<activity
         android:name=".MainActivity"
-        **android:exported="true" <!-- 추가 -->**
+        android:exported="true" <!-- 추가 -->
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
         android:launchMode="singleTask"
@@ -121,19 +121,19 @@
       </activity>
 
       <!-- admob app id for adiscope Admob rewarded video networks -->
-      **<meta-data
+      <meta-data
           android:name="com.google.android.gms.ads.APPLICATION_ID"
-          android:value="ca-app-pub-xxxxx"/>** <!-- 추가, tnk로부터 전달 받은 값 적용 -->
+          android:value="ca-app-pub-xxxxx"/> <!-- 추가, tnk로부터 전달 받은 값 적용 -->
       ...
-      **<meta-data android:name="adiscope_media_id" android:value="${adiscope_media_id}"/> <!-- 추가 -->**
-      **<meta-data android:name="adiscope_media_secret" android:value="${adiscope_media_secret}"/> <!-- 추가 -->**
-      **<meta-data android:name="adiscope_sub_domain" android:value="${adiscope_sub_domain}"/> <!-- 추가 -->**
+      <meta-data android:name="adiscope_media_id" android:value="${adiscope_media_id}"/> <!-- 추가 -->
+      <meta-data android:name="adiscope_media_secret" android:value="${adiscope_media_secret}"/> <!-- 추가 -->
+      <meta-data android:name="adiscope_sub_domain" android:value="${adiscope_sub_domain}"/> <!-- 추가 -->
   </application>
   ```
 
 - **Sync Project With Gradle Files** (adiscope 모듈 받아 오기)
 
-  ![[우측 6번째 아이콘 (Sync Project With Gradle Files)]](RN%20Adiscope%20%E1%84%86%E1%85%A2%E1%84%8E%E1%85%A6%20%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%B2%20%E1%84%80%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3%20e57288617c1649f187c9910b43a06bb7/Untitled.png)
+  ![androidstudio_menu_bar](https://github.com/adiscope/Adiscope-RN-Sample-statnco/assets/60415962/69e22df4-fa8a-4408-bca9-b07f5e57b8af)
 
   [우측 6번째 아이콘 (Sync Project With Gradle Files)]
 
@@ -152,7 +152,7 @@
 
     @Override
     protected String getMainComponentName() {
-      **return "rntest1"; // 매체 react-native 프로젝트 이름으로 변경**
+      return "rntest1"; // 매체 react-native 프로젝트 이름으로 변경**
     }
 
     /*
@@ -463,7 +463,7 @@
     # Flags change depending on the env values.
     flags = get_default_flags()
 
-    **pod 'Adiscope', '2.1.8.0'
+    pod 'Adiscope', '2.1.8.0'
     pod 'AdiscopeMediaAppLovin', '2.1.2.0'
     pod 'AdiscopeMediaAdMob', '2.0.6.0'
     pod 'AdiscopeMediaAdManager', '2.1.8.0'
@@ -521,7 +521,7 @@
 
   <dict>
   	...
-  	**<key>NSUserTrackingUsageDescription</key>
+  	<key>NSUserTrackingUsageDescription</key>
   	<string></string>
   	<key>GADIsAdManagerApp</key>
   	<true/>
@@ -876,7 +876,7 @@
   			<key>SKAdNetworkIdentifier</key>
   			<string>737Z793B9F.skadnetwork</string>
   		</dict>
-  	</array>**
+  	</array>
   	...
   </dict>
   ```
