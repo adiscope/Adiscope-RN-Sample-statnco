@@ -45,7 +45,7 @@
           jcenter()
       }
       dependencies {
-          classpath('**com.android.tools.build:gradle:3.6.4**') // gradle upgrade
+          classpath('com.android.tools.build:gradle:3.6.4') // gradle upgrade
       }
   }
 
@@ -424,7 +424,7 @@
           List<NativeModule> modules = new ArrayList<>();
 
           // Custom Module 추가
-          **modules.add(new RNAdiscopeModule(reactContext));**
+          modules.add(new RNAdiscopeModule(reactContext));
 
           return modules;
       }
@@ -443,7 +443,7 @@
     @SuppressWarnings("UnnecessaryLocalVariable")
     List<ReactPackage> packages = new PackageList(this).getPackages();
     // Packages that cannot be autolinked yet can be added manually here, for example:
-     **packages.add(new RNAdiscopePackage()); // NativeModule Package 추가**
+     packages.add(new RNAdiscopePackage()); // NativeModule Package 추가
     return packages;
   }
   ```
@@ -473,7 +473,7 @@
     pod 'AdiscopeMediaTapjoy', '2.1.4.0'
     pod 'AdiscopeMediaIronsource', '2.1.0.0'
     pod 'AdiscopeMediaVungle', '2.1.8.0'
-    pod 'AdiscopeMediaChartBoost', '2.1.2.0'**
+    pod 'AdiscopeMediaChartBoost', '2.1.2.0'
 
     use_react_native!(
       :path => config[:reactNativePath],
@@ -505,12 +505,13 @@
       )
       __apply_Xcode_12_5_M1_post_install_workaround(installer)
 
-  		**installer.pods_project.targets.each do |target|
+        # pod install 할 때, arm64 simulator 자동 제외
+  		installer.pods_project.targets.each do |target|
           target.build_configurations.each do |config|
               config.build_settings["ONLY_ACTIVE_ARCH"] = "YES"
               config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
           end
-      end**
+      end
 
     end
   end
@@ -901,10 +902,10 @@
   #ifndef RCTRNAdiscopeModule_h
   #define RCTRNAdiscopeModule_h
 
-  **#import <React/RCTBridgeModule.h>
+  #import <React/RCTBridgeModule.h>
   #import <Adiscope/Adiscope.h>
 
-  @interface RCTRNAdiscopeModule : NSObject <RCTBridgeModule, AdiscopeDelegate>**
+  @interface RCTRNAdiscopeModule : NSObject <RCTBridgeModule, AdiscopeDelegate>
 
   @end
 
