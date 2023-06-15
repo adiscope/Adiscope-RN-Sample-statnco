@@ -1,4 +1,4 @@
-package com.rnadiscope7ten;
+package com.gameone.bowling710;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -52,6 +52,8 @@ public class MainActivity extends ReactActivity implements RewardedVideoAdListen
 
           mOfferwallAd = AdiscopeSdk.getOfferwallAdInstance(MainActivity.this);
           mOfferwallAd.setOfferwallAdListener(MainActivity.this);
+
+          AdiscopeSdk.getOptionSetterInstance(MainActivity.this).setChildYN("NO"); // 가족 정책
 
           Log.d(TAG, ">>> called onInitialized() : completed");
         } else {

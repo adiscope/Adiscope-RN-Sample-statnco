@@ -1,4 +1,4 @@
-package com.rnadiscope7ten;
+package com.gameone.bowling710;
 
 import android.util.Log;
 
@@ -38,7 +38,7 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
     */
     @ReactMethod
     public void setUserId(String userId) {
-        Log.d(TAG, ">>> ReactNative call showUserId()");
+        Log.d(TAG, ">>> ReactNative call setUserId()");
         AdiscopeSdk.setUserId(userId);
     }
 

@@ -21,11 +21,11 @@ import {
 const App = () => {
   const {RNAdiscopeModule} = NativeModules;
 
-  const rvUnitId: string = Platform.OS === 'android' ? 'ADMOB' : 'ADMOB';
+  const rvUnitId: string = Platform.OS === 'android' ? 'RV1' : 'ADMOB';
   const interstitialUnitId: string =
-    Platform.OS === 'android' ? 'INTER_ADMOB' : 'INTER_TEST';
+    Platform.OS === 'android' ? 'Chilten' : 'INTER_TEST';
   const offerwallUnitId: string =
-    Platform.OS === 'android' ? 'OFFERWALL' : 'API_OFFERWALL';
+    Platform.OS === 'android' ? 'Chilten_AOS' : 'API_OFFERWALL';
 
   const showRV = () => {
     RNAdiscopeModule.showRewardedVideo(rvUnitId);

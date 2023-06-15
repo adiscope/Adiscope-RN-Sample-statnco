@@ -1,4 +1,4 @@
-package com.rnadiscope7ten;
+package com.gameone.bowling710;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

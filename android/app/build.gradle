@@ -129,15 +129,15 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.rnadiscope7ten"
+        applicationId "com.gameone.bowling710"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [
-                adiscope_media_id: "AOS media id, TNK로부터 전달 받은 값",
-                adiscope_media_secret: "TNK로부터 전달 받은 값",
-                adiscope_sub_domain: "TNK로부터 전달 받은 값"
+                adiscope_media_id: "",
+                adiscope_media_secret: "",
+                adiscope_sub_domain: ""
         ]
     }
     splits {
