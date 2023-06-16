@@ -1111,3 +1111,100 @@
   ```
 
   ![rnscreen_1](https://github.com/adiscope/Adiscope-RN-Sample-statnco/assets/60415962/ea0b806a-6f2c-4214-9711-1141824ad2a2)
+
+---
+
+## [**Reward Callback 수신]\*\*
+
+> 콜백 받을 URL(GET API)은 매체사에서 생성해서 TNK에 전달
+>
+> > signature의 검증은 Adiscope Admin Page에서 발급받은 **secretKey**와 Callback의 parameters을 통해 값을 검증 (아래 sample code 참조)
+
+- **전달 파라미터 (adiscope → 매체)**
+
+  - transctionId : 고유한 ID값. 중복호출 여부에 사용
+  - signature : Callback 유효성 검증에 사용되는 MD5 HASH 값
+  - unitId : 참여한 광고 UnitID
+  - userId : Client에서 setUserID로 설정한 UserID
+  - adid : 광고 추적 ID(iOS: IDFA)
+  - currency : 보상 화폐 단위
+  - amount : 보상 지급 수량
+
+- **매체사 reward callback 처리 sample code**
+
+  ```jsx
+  var express = require('express');
+  var crypto = require('crypto');
+  var secret = 'YOUR_SECRET_KEY';
+
+  app.listen(process.env.PORT || 3412);
+
+  app.get('/', function (req, res) {
+    var userId = req.query.userId;
+    var rewardUnit = req.query.rewardUnit;
+    var rewardAmount = req.query.rewardAmount;
+    var transactionId = req.query.transactionId;
+    var signature = req.query.signature;
+    var plainText = makePlainText(
+      userId,
+      rewardUnit,
+      rewardAmount,
+      transactionId,
+    );
+    var hmac = getHMAC(plainText, secret);
+
+    console.log(hmac);
+    console.log(signature);
+
+    // Signatures checking
+    if (hmac === signature) {
+      // Check for duplicated transaction id here (whether player already has received the reward)
+      if (!isDuplicatedReward(transactionId)) {
+        // If there's no duplicate - give virtual goods to player
+        // and store the transaction id for duplicate checking.
+        giveReward(transactionId);
+
+        // On success, return 200 and include 'OK' in the HTTP body
+        res.status(200).send('OK');
+      } else {
+        // reward already received by user
+        res.status(200).send('DUPLICATED');
+      }
+    } else {
+      // signature error
+      res.status(200).send('SIGNATURE_ERROR');
+    }
+  });
+
+  function getHMAC(plainText, secret) {
+    return crypto.createHmac('md5', secret).update(plainText).digest('hex');
+  }
+
+  function makePlainText(userId, rewardUnit, rewardAmount, transactionId) {
+    return userId.concat(rewardUnit, rewardAmount, transactionId);
+  }
+
+  function isDuplicatedReward(transactionId) {
+    // check transaction id is duplicated or not
+    return false;
+  }
+
+  function giveReward(transactionId) {
+    // give reward to user
+    // store transaction id for future checking
+  }
+  ```
+
+- **Reward Callback 재요청 정책**
+  > 매체사를 통해 200 상태 값을 adiscope이 수신하지 못했을 경우, 재요청 정칙
+  1. 10초후에 재시도
+  2. 1분후에 재시도
+  3. 10분에 재시도
+  4. 30분후에 재시도
+  5. 1시간후에 재시도
+  6. 6시간후에 재시도
+  7. 6시간후에 재시도
+  8. 12시간후에 재시도
+  9. 12시간후에 재시도
+  10. 12시간후에 재시도
+  11. 재시도 하지 않음
