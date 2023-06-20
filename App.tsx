@@ -21,11 +21,11 @@ import {
 const App = () => {
   const {RNAdiscopeModule} = NativeModules;
 
-  const rvUnitId: string = Platform.OS === 'android' ? 'RV1' : 'ADMOB';
+  const rvUnitId: string = Platform.OS === 'android' ? 'RV1' : 'RV1';
   const interstitialUnitId: string =
-    Platform.OS === 'android' ? 'Chilten' : 'INTER_TEST';
+    Platform.OS === 'android' ? 'CHILTEN' : 'INTER_TEST';
   const offerwallUnitId: string =
-    Platform.OS === 'android' ? 'Chilten_AOS' : 'API_OFFERWALL';
+    Platform.OS === 'android' ? 'CHILTEN_AOS' : 'CHILTEN_IOS';
 
   const showRV = () => {
     RNAdiscopeModule.showRewardedVideo(rvUnitId);
@@ -45,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     if (Platform.OS === 'ios') {
-      RNAdiscopeModule.adInitilize();
+      RNAdiscopeModule.adInitialize();
     }
   }, []);
 

@@ -1,12 +1,24 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '12.0'
 
 target 'RNAdiscope7Ten' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
+  
+  pod 'Adiscope', '2.1.8.0'
+  pod 'AdiscopeMediaAppLovin', '2.1.2.0'
+  pod 'AdiscopeMediaAdMob', '2.0.6.0'
+  pod 'AdiscopeMediaAdManager', '2.1.8.0'
+  pod 'AdiscopeMediaFAN', '2.1.2.0'
+  pod 'AdiscopeMediaMobVista', '2.1.1.0'
+  pod 'AdiscopeMediaUnityAds', '2.1.4.0'
+  pod 'AdiscopeMediaTapjoy', '2.1.4.0'
+  pod 'AdiscopeMediaIronsource', '2.1.0.0'
+  pod 'AdiscopeMediaVungle', '2.1.8.0'
+  pod 'AdiscopeMediaChartBoost', '2.1.2.0'
 
   target 'RNAdiscope7TenTests' do
     inherit! :complete
@@ -17,10 +29,21 @@ target 'RNAdiscope7Ten' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable these next few lines.
-  use_flipper!
+  
+  # use_flipper!
+  
+  
   post_install do |installer|
-    flipper_post_install(installer)
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        config.build_settings["ONLY_ACTIVE_ARCH"] = "YES"
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      end
+    end
   end
+  
+  
 end
 
 target 'RNAdiscope7Ten-tvOS' do
