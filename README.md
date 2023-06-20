@@ -465,7 +465,7 @@
 
     pod 'Adiscope', '2.1.8.0'
     pod 'AdiscopeMediaAppLovin', '2.1.2.0'
-    pod 'AdiscopeMediaAdMob', '2.0.6.0'
+    pod 'AdiscopeMediaAdMob', '2.1.8.0'
     pod 'AdiscopeMediaAdManager', '2.1.8.0'
     pod 'AdiscopeMediaFAN', '2.1.2.0'
     pod 'AdiscopeMediaMobVista', '2.1.1.0'
@@ -511,9 +511,8 @@
               config.build_settings["ONLY_ACTIVE_ARCH"] = "YES"
 						  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
               config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-        end
+          end
       end
-
     end
   end
   ```
@@ -935,22 +934,23 @@
   RCT_EXPORT_MODULE(RNAdiscopeModule)
 
   // << Adiscope SDK Initialize >>
+  // TNK로부터 공유 받은 mediaId, secretKey 등록
   RCT_EXPORT_METHOD(adInitialize)
   {
     [[AdiscopeInterface sharedInstance] setMainDelegate:self];
-    [[AdiscopeInterface sharedInstance] setUserId:@"MyUserID"];
-    [[AdiscopeInterface sharedInstance] initialize:@"86" mediaSecret:@"3f5ae8e75c2d481d9d0f5ea030e544e9" callBackTag:nil];
+    [[AdiscopeInterface sharedInstance] initialize:@"259" mediaSecret:@"fd1af38c1d244585a3e0421e6ed85710" callBackTag:nil];
   }
 
   // initialize callback
   - (void)onInitialized:(BOOL)isSuccess {
-    RCTLogInfo(@">>> %d", isSuccess);
+    RCTLogInfo(@">>> onInitialized : %d", isSuccess);
   }
 
   // << setUserId >>
 
   RCT_EXPORT_METHOD(setUserId: (NSString *)userId) {
     [[AdiscopeInterface sharedInstance] setUserId:userId];
+    RCTLogInfo(@">>> call setUserId() : userId => %@", userId);
   }
 
   // callback example
@@ -974,7 +974,8 @@
   }
 
   - (void)onRewardedVideoAdFailedToLoad:(NSString *)unitID Error:(AdiscopeError *)error {
-    RCTLogInfo(@">>> onRewardedVideoAdFailedToLoad");
+    RCTLogInfo(@">>> call onRewardedVideoAdFailedToLoad()");
+    RCTLogInfo(@">>> error : %@", error);
   }
 
   - (void)onRewardedVideoAdOpened:(NSString *)unitID {
@@ -1043,11 +1044,11 @@
   const App = () => {
     const {RNAdiscopeModule} = NativeModules;
 
-    const rvUnitId: string = Platform.OS === 'android' ? 'ADMOB' : 'ADMOB';
+    const rvUnitId: string = Platform.OS === 'android' ? 'RV1' : 'RV1';
     const interstitialUnitId: string =
-      Platform.OS === 'android' ? 'INTER_ADMOB' : 'INTER_TEST';
+      Platform.OS === 'android' ? 'CHILTEN' : 'CHILTEN';
     const offerwallUnitId: string =
-      Platform.OS === 'android' ? 'OFFERWALL' : 'API_OFFERWALL';
+      Platform.OS === 'android' ? 'CHILTEN_AOS' : 'CHILTEN_IOS';
 
     const showRV = () => {
       RNAdiscopeModule.showRewardedVideo(rvUnitId);
@@ -1067,7 +1068,7 @@
 
     useEffect(() => {
       if (Platform.OS === 'ios') {
-        RNAdiscopeModule.adInitilize();
+        RNAdiscopeModule.adInitialize();
       }
     }, []);
 
