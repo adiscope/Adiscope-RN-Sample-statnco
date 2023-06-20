@@ -23,7 +23,7 @@ const App = () => {
 
   const rvUnitId: string = Platform.OS === 'android' ? 'RV1' : 'RV1';
   const interstitialUnitId: string =
-    Platform.OS === 'android' ? 'CHILTEN' : 'INTER_TEST';
+    Platform.OS === 'android' ? 'CHILTEN' : 'CHILTEN';
   const offerwallUnitId: string =
     Platform.OS === 'android' ? 'CHILTEN_AOS' : 'CHILTEN_IOS';
 

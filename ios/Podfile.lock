@@ -2,7 +2,7 @@ PODS:
   - Adiscope (2.1.8.0)
   - AdiscopeMediaAdManager (2.1.8.0):
     - Google-Mobile-Ads-SDK (= 8.11.0)
-  - AdiscopeMediaAdMob (2.0.6.0):
+  - AdiscopeMediaAdMob (2.1.8.0):
     - Google-Mobile-Ads-SDK (= 8.11.0)
   - AdiscopeMediaAppLovin (2.1.2.0):
     - AppLovinSDK (= 11.4.1)
@@ -353,7 +353,7 @@ PODS:
 DEPENDENCIES:
   - Adiscope (= 2.1.8.0)
   - AdiscopeMediaAdManager (= 2.1.8.0)
-  - AdiscopeMediaAdMob (= 2.0.6.0)
+  - AdiscopeMediaAdMob (= 2.1.8.0)
   - AdiscopeMediaAppLovin (= 2.1.2.0)
   - AdiscopeMediaChartBoost (= 2.1.2.0)
   - AdiscopeMediaFAN (= 2.1.2.0)
@@ -477,7 +477,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Adiscope: 7563814de51e9416b11f35e8a8d345a6360b8b65
   AdiscopeMediaAdManager: 5032a88041d2edc96d6fa9d8db26645bd6c3e641
-  AdiscopeMediaAdMob: 7d564db66cfe456deacb95b62448c88143474b0b
+  AdiscopeMediaAdMob: 059e5e6284b955bdab471b5e09c467afaaea8cda
   AdiscopeMediaAppLovin: 4e62d74d28cd31badb09d9371114a200de9cfcd6
   AdiscopeMediaChartBoost: 205d407530574a7cadb1702c6297c3d588f7803a
   AdiscopeMediaFAN: b4bff341dd6723cfe60f6d4b5fed46b387e3c95d
@@ -528,6 +528,6 @@ SPEC CHECKSUMS:
   VungleSDK-iOS: b370edd2e5787ecb25fc9332941deb1e1ca8176e
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
 
-PODFILE CHECKSUM: ba5b8326e9f69019e309efe9fe9aa97092a196be
+PODFILE CHECKSUM: e5368f53b2d1fdf31ed65147e52aa97115f3eb21
 
 COCOAPODS: 1.12.1
