@@ -76,9 +76,9 @@ RCT_EXPORT_METHOD(showInterstitial: (NSString *)interstitialUnitID)
   [[AdiscopeInterface sharedInstance] loadInterstitial:interstitialUnitID];
 }
 
-// interstitial callbacks
+// interstitial
+- (void)onInterstitialAdLoaded:(NSString *)unitID {
 
-- (void)onInterstitialAdLoaded {
   RCTLogInfo(@">>> onInterstitialAdLoaded");
   [[AdiscopeInterface sharedInstance] showInterstitial];
 }
@@ -94,7 +94,7 @@ RCT_EXPORT_METHOD(showInterstitial: (NSString *)interstitialUnitID)
 // << Offerwall >>
 RCT_EXPORT_METHOD(showOfferwall: (NSString *)offerwallUnitID)
 {
-  RCTLogInfo(@">>> interstitial unit id %@", offerwallUnitID);
+  RCTLogInfo(@">>> offerwall unit id %@", offerwallUnitID);
   [[AdiscopeInterface sharedInstance] showOfferwall:offerwallUnitID];
 }
 
