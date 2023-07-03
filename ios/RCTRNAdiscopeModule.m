@@ -15,7 +15,7 @@ RCT_EXPORT_MODULE(RNAdiscopeModule)
 RCT_EXPORT_METHOD(adInitialize)
 {
   [[AdiscopeInterface sharedInstance] setMainDelegate:self];
-  [[AdiscopeInterface sharedInstance] initialize:@"259" mediaSecret:@"fd1af38c1d244585a3e0421e6ed85710" callBackTag:nil];
+  [[AdiscopeInterface sharedInstance] initialize:@"" mediaSecret:@"" callBackTag:nil];
 }
 
 // initialize callback
