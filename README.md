@@ -1001,7 +1001,7 @@
 
   // interstitial callbacks
 
-  - (void)onInterstitialAdLoaded {
+  - (void)onInterstitialAdLoaded:(NSString *)unitID {
     RCTLogInfo(@">>> onInterstitialAdLoaded");
     [[AdiscopeInterface sharedInstance] showInterstitial];
   }
